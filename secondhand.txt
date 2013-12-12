@@ -1,0 +1,47 @@
+CREATE DATABASE secondhand;
+
+USE secondhand;
+
+CHARACTER SET 'utf8'
+COLLATE 'utf8_general_ci';
+
+CREATE TABLE GoodsType (
+	TypeId  INT  AUTO_INCREMENT  PRIMARY KEY,
+	TypeName VARCHAR(100)  NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE Goods (
+	GoodsId INT  AUTO_INCREMENT  PRIMARY KEY,
+	TypeId INT, 
+	SaleOrBuy TINYINT,
+	GoodsName VARCHAR(50),
+	GoodsDetail VARCHAR(1000),
+	ImageURL VARCHAR(100),
+	Price VARCHAR(50),
+	StartTime  DATETIME,
+	OldNew  VARCHAR(50),
+	Invoice  VARCHAR(50),
+	Repaired  VARCHAR(50),
+	Carriage  VARCHAR(50),
+	PayMode  VARCHAR(50),
+	DeliverMode  VARCHAR(50),
+	IsOver  TINYINT,
+	OwnerId  VARCHAR(50),
+	ClickTimes  INT
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE Users (
+	UserId	VARCHAR(50),
+	UserPwd	VARCHAR(50),
+	Name	VARCHAR(50),
+	Sex	TINYINT,
+	Number  VARCHAR(50),
+	Dorm	VARCHAR(50),
+	Email	VARCHAR(50),
+	Telephone	VARCHAR(100),
+	UserType TINYINT
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO Users VALUES('Admin', '111111', 'Admin', 1, '', '', '', '', '', 1);
+
+
+
