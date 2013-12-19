@@ -10,7 +10,7 @@ function newwin(url) {
   return false;
 }
 </script>
-<title>用户商品列表</title>
+<title>商品列表</title>
 </head>
 <body background = "../images/背景.jpg">
 <center>
@@ -41,34 +41,23 @@ function newwin(url) {
   } 
   // 只查看未结束的商品
   $uid=$_GET["uid"];
-  $cond=$cond." AND OwnerId='".$uid."'";
   //echo $uid;
   //echo $cond;
   // 获取用户信息
-  include('..\Class\Users.php');
-  $objUser = new Users();
-  $objUser->GetUsersInfo($uid);
-  //创建Goods对象，读取满足条件的记录
+ 
   include('..\Class\Goods.php');
   $obj = new Goods();
   $results = $obj->GetGoodslist($cond);
   
-  $addresser=trim($_SESSION["user_id"]);
-  if($addresser=="")
-  {
-  	$sender = trim($_SESSION["admin_id"]);
-  	$addresser = $sender;
-  }
-  
   if ($flag==0)
   {
 ?>
-   <B>转让信息</B>&nbsp;&nbsp;<a href="UserView.php?flag=1&uid=<?   echo($objUser->UserId); ?>">求购信息</a>
+   <B>转让信息</B>&nbsp;&nbsp;<a href="AdminGoods.php?flag=1">求购信息</a>
   <? }
   else
 {
 ?>
-   <a href="UserView.php?flag=0&uid=<?   echo($objUser->UserId); ?>">转让信息</a>&nbsp;&nbsp;<B>求购信息</B>
+   <a href="AdminGoods.php?flag=0">转让信息</a>&nbsp;&nbsp;<B>求购信息</B>
   <? } ?>   
   </td>  
   </tr>
@@ -77,17 +66,11 @@ function newwin(url) {
 <tr>
 <td valign="top" colspan=2 align="center">
 <table border=1 width=100% cellspacing=0 bordercolorlight="#C0C0C0" bordercolordark="#FFFFFF">
-<tr><td colspan=6 bgcolor="#FFFFFF">
-	<p align="center"><font color=#3399FF><b>【<? echo($objUser->UserId); ?>的商品信息】
-	&nbsp;&nbsp;
-	
-	
-	<a href='SendMessage.php?addresser=<? echo($addresser);?>&addressee=<?   echo($objUser->UserId); ?>' target="_blank">【发消息】</a>
-	</b></font></td></tr>
 
 <tr>
 <td align=center width="14%" bgcolor="#E1F5FF">商品图片</td>
 <td align=center width="20%" bgcolor="#E1F5FF">商品名称</td>
+<td align=center width="20%" bgcolor="#E1F5FF">拥有者</td>
 <td align=center width="10%" bgcolor="#E1F5FF">价格</td>
 <td align=center width="12%" bgcolor="#E1F5FF">新旧程度</td>
 <td align=center width="10%" bgcolor="#E1F5FF">发布时间</td>
@@ -104,36 +87,25 @@ function newwin(url) {
 <?   }
   else
   {
-?><img src="images/<?     echo($row[5]); ?>" height=50 border=0>
+?><img src="../user/images/<?     echo($row[5]); ?>" height=50 border=0>
 <?   } ?></td>
   <td align=center bgcolor="#FFFFFF"><a href="../GoodsView.php?gid=<?   echo($row[0]); ?>" target=_blank><?   echo($row[3]); ?></a></td>
+   <td align=center bgcolor="#FFFFFF"><a href="../user/UserView.php?uid=<?   echo($row[15]); ?>" target=_blank><?   echo($row[15]); ?></a></td>
   <td align=center bgcolor="#FFFFFF"><?   echo($row[6]); ?></td>
   <td align=center bgcolor="#FFFFFF"><?   echo($row[8]); ?>&nbsp;</td>
   <td bgcolor="#FFFFFF" align="center"><?   echo($row[7]); ?></td>
   <td align=center bgcolor="#FFFFFF">
-  <?   if ($row[14]==1)
-  {
-?>
-    已结束
-  <?   }
-    else
-  {
-?>
-  <? if ($row[15]==$_SESSION["user_id"])
-     {
-?>
-  <a href="GoodsEdit.php?gid=<? echo($row[0]); ?>" target=_blank>修改</a>&nbsp;
-  <a href="GoodsDelt.php?gid=<? echo($row[0]); ?>" target=_blank>删除</a>&nbsp;
-  <a href="GoodsOver.php?gid=<? echo($row[0]); ?>" target=_blank>结束</a>
-  <?     } ?>
-  <?   } ?></td>
+  
+  <a href="GoodsDelete.php?gid=<? echo($row[0]); ?>" target=_blank>删除</a>&nbsp;
+ 
+   </td>
   </tr>  
 <?   $m=$m+1;
-  } 
   if ($m==0)
   {
     echo("<tr><td bgcolor=#FFFFFF align=center colspan=6>暂无商品信息</td></tr>");
   } 
+ }
 ?>
 </table>
 </td>

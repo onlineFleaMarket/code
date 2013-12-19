@@ -129,6 +129,9 @@ function newwin(url) {
   <td align=center bgcolor="#FFFFFF"><?   echo($row[8]); ?>&nbsp;</td>
   <td align=center bgcolor="#FFFFFF"><a href="user/UserView.php?uid=<? echo($row[15]); ?>" target=_blank><?   echo($row[15]); ?></a></td>
   <td bgcolor="#FFFFFF" align="center"><?   echo($row[7]); ?></td>
+  <td align=center bgcolor="#FFFFFF">
+  <a href="/user/GoodsStore.php?gid=<? echo($row[0]); ?>" target=_blank>   ’≤ÿ</a>&nbsp;
+  </td>
   </tr>  
 <?   $m=$m+1;
   } 

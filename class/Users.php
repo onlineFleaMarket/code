@@ -3,7 +3,7 @@
 //表的每个字段对应类的一个成员变量
 class Users  
 {
-        public $UserId;		// 用户名
+    public $UserId;		// 用户名
 	public $UserPwd;	// 密码
 	public $Name;		// 姓名
 	public $Sex;		// 性别
@@ -17,7 +17,7 @@ class Users
 
   function __construct() {
 	// 连接数据库
-	$this->conn = mysqli_connect("localhost", "root", "", "secondhand"); 
+	$this->conn = mysqli_connect("76.163.252.227:3306", "A929774_sec2hand", "Sec2hand", "A929774_secondhand"); 
 	mysqli_query($this->conn, "SET NAMES gbk");
   }
 		
@@ -125,6 +125,8 @@ class Users
   {
     $sql="DELETE FROM Users WHERE UserId='".$uid."'";
 	$this->conn->query($sql);
+	$sql2="DELETE FROM Goods WHERE OwnerId='".$uid."'";
+	$this->conn->query($sql2);
   } 
 }
 ?>

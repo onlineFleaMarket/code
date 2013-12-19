@@ -33,6 +33,7 @@
                 <td width="100%" align="center" bgcolor="#E1F5FF">
                 <a href='user\UserEdit.php?uid=<?   echo($objUser->UserId); ?>' target="_blank">修改资料</a>
                 &nbsp;&nbsp;<a href='user\UserView.php?uid=<?   echo($objUser->UserId); ?>' target="_blank">我的商品</a>
+                &nbsp;&nbsp;<a href='user\FavouriteView.php?uid=<?   echo($objUser->UserId); ?>' target="_blank">我的收藏</a>
                 &nbsp;&nbsp;<a href='user\Messageview.php?uid=<?   echo($objUser->UserId); ?>' target="_blank">我的留言</a>
 				&nbsp;&nbsp;<a href="LoginExit.php" onclick="return newswin(this.href)">退出登录</a>
                 </td>         
@@ -59,7 +60,9 @@
                     <input type="password" name="password" size="18" value="">                            
                     <br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="确定" name="B1">
                     &nbsp;&nbsp;
-                    <a href="user/UserAdd.php"  target=_blank>用户注册</a>                           
+                    <a href="user/UserAdd.php"  target=_blank>用户注册</a>
+                    &nbsp;&nbsp;     
+                    <a href="Admin/AdminLogin.php"  target=_blank>管理员登录</a>                        
                   </form>         
                 </td>         
               </tr>         

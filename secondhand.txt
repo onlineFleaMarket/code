@@ -41,7 +41,15 @@ CREATE TABLE Users (
 	Telephone	VARCHAR(100),
 	UserType TINYINT
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO Users VALUES('Admin', '111111', 'Admin', 1, '', '', '', '', '', 1);
+CREATE TABLE Favourite (
+	UserId	VARCHAR(50) PRIMARY KEY, 
+	GoodsId INT
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE Admin (
+	AdminId	VARCHAR(50),
+	AdminPwd VARCHAR(50)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO Admin VALUES('admin', 'aaaaaa');
 
 
 

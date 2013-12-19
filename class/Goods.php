@@ -23,7 +23,7 @@ class Goods  {
 
   function __construct() {
 	// 连接数据库
-	$this->conn = mysqli_connect("localhost", "root", "", "secondhand"); 
+	$this->conn = mysqli_connect("76.163.252.227:3306", "A929774_sec2hand", "Sec2hand", "A929774_secondhand"); 
 	mysqli_query($this->conn, "SET NAMES gbk");
   }
 		
@@ -130,6 +130,8 @@ class Goods  {
   function delete($id) {
 	$sql = "DELETE FROM Goods WHERE GoodsId IN (" . $id . ")";
 	$this->conn->query($sql);
+	$sql2 = "DELETE FROM Favourite WHERE GoodsId IN (" . $id . ")";
+	$this->conn->query($sql2);
   }
 }
 ?>

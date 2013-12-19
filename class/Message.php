@@ -12,7 +12,7 @@ class Message
 
   function __construct() {
 	// 连接数据库
-	$this->conn = mysqli_connect("localhost", "root", "", "secondhand"); 
+	$this->conn = mysqli_connect("76.163.252.227:3306", "A929774_sec2hand", "Sec2hand", "A929774_secondhand"); 
 	mysqli_query($this->conn, "SET NAMES gbk");
   }
 		

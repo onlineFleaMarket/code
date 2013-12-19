@@ -12,7 +12,7 @@ function newwin(url) {
 </script>
 <title>留言列表</title>
 </head>
-<body background = "images/背景.jpg">
+<body background = "../images/背景.jpg">
 <center>
 <table border="0" width="760" cellspacing="0" cellpadding="0">
  <tr><td height="80"><img src="../images/title.jpg" border="0" width="800" height="100"></a></td></tr>
@@ -57,7 +57,7 @@ function newwin(url) {
 <td valign="top" colspan=2 align="center">
 <table border=1 width=100% cellspacing=0 bordercolorlight="#C0C0C0" bordercolordark="#FFFFFF">
 <tr><td colspan=6 bgcolor="#FFFFFF">
-	<p align="center"><font color=#3399FF><b>【<? echo($objUser->UserId); ?>的留言板】</b></font></td></tr>
+	<p align="center"><font color=#3399FF><b>【<? echo($uid); ?>的留言板】</b></font></td></tr>
 
 
 <? 
@@ -68,7 +68,7 @@ if($flag==0)
   $obj = new Message();
   $cond=$cond." WHERE Addressee='".$uid."' ORDER BY mtime DESC ";
   $results = $obj->GetMessagelist($cond);
-  
+  $n=0;
   while($row = $results->fetch_row())
   {
 ?>
@@ -85,7 +85,12 @@ if($flag==0)
 </table>
  
 </p>
- <? }
+ <? $n++;
+ }
+ if ($n==0)
+  {
+    echo("<tr><td bgcolor=#FFFFFF align=center colspan=6>暂无留言信息</td></tr>");
+  } 
 }
 
 else
@@ -95,7 +100,7 @@ else
   $obj = new Message();
   $cond=$cond." WHERE Addresser='".$uid."' ORDER BY mtime DESC ";
   $results = $obj->GetMessagelist($cond);
-  
+  $m=0;
   while($row = $results->fetch_row())
   {
 ?>
@@ -107,10 +112,16 @@ else
 <tr><td align=right bgcolor=#eeeeee>收件人：</td><td align=left><? echo($row[2]); ?></td></tr>
 <tr><td align=right bgcolor=#eeeeee>时间：</td><td align=left><? echo($row[3]); ?></td></tr>
 <tr><td align=right bgcolor=#eeeeee>内容：</td><td align=left><? echo($row[4]); ?></td></tr>
- 
+ 	
 </table>
 </p>
- <?}
+ <?
+ 	$m++;
+ }
+  if ($m==0)
+  {
+    echo("<tr><td bgcolor=#FFFFFF align=center colspan=6>暂无留言信息</td></tr>");
+  } 
 }?>
 </table> 
 </table>
